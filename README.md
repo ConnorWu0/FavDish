@@ -1,5 +1,5 @@
 # Fav Dish  
-After you launch the app, you will see no dishes first.  
+After you launch the app, you will see the text of no dishes added yet first.  
 ![no dishes](https://github.com/ConnorWuProjects/FavDish/blob/master/screenshots/No%20dishes.png?raw=true)   
 Press the left-right plus icon, then you can add a dish recipe.    
 ![Add dish](https://github.com/ConnorWuProjects/FavDish/blob/master/screenshots/Add%20dish.png?raw=true)  
