@@ -10,7 +10,7 @@ You can filter dishes by pressing the icon next to the plus icon.
 ![filter](https://github.com/ConnorWuProjects/FavDish/blob/master/screenshots/filter.png?raw=true)  
 You will get a random dish recipe every 15 minutes, and the app will notify you.  
 ![notification](https://github.com/ConnorWuProjects/FavDish/blob/master/screenshots/notification.png?raw=true)  
-You can share dish recipes by pressing the top-right button.  
+You can share dish recipes you saved by pressing the top-right button.  
 ![share](https://github.com/ConnorWuProjects/FavDish/blob/master/screenshots/share.png)
 
 
