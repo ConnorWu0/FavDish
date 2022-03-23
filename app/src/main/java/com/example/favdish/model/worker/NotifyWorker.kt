@@ -3,6 +3,7 @@ package com.example.favdish.model.worker
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,6 +13,7 @@ import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.work.Worker
@@ -21,10 +23,12 @@ import com.example.favdish.utils.Constants
 import com.example.favdish.view.activities.MainActivity
 
 class NotifyWorker(context: Context, workerParameters: WorkerParameters): Worker(context,workerParameters) {
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun doWork(): Result {
         sendNotification()
         return Result.success()
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun sendNotification(){
         val notification_id = 0
         val intent = Intent(applicationContext, MainActivity::class.java)
@@ -39,7 +43,7 @@ class NotifyWorker(context: Context, workerParameters: WorkerParameters): Worker
         val bigPicStyle = NotificationCompat.BigPictureStyle()
             .bigPicture(bitmap)
             .bigLargeIcon(null)
-        val pendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, 0)
+        val pendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, FLAG_IMMUTABLE)
         val notification = NotificationCompat.Builder(applicationContext, Constants.NOTIFICATION_CHANNEL)
             .setContentTitle(titleNotification)
             .setContentText(subtitleNotification)

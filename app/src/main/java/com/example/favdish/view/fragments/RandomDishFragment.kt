@@ -8,12 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.favdish.R
@@ -25,7 +23,6 @@ import com.example.favdish.model.entities.RandomDish
 import com.example.favdish.utils.Constants
 import com.example.favdish.viewmodel.FavDishViewModel
 import com.example.favdish.viewmodel.FavDishViewModelFactory
-import com.example.favdish.viewmodel.NotificationsViewModel
 import com.example.favdish.viewmodel.RandomDishViewModel
 
 class RandomDishFragment : Fragment() {
@@ -115,7 +112,7 @@ class RandomDishFragment : Fragment() {
             .load(recipe.image)
             .centerCrop()
             .into(binding.ivDishImage)
-        var dishType: String = "other"
+        var dishType = "other"
         if (recipe.dishTypes.isNotEmpty()){
             dishType = recipe.dishTypes[0]
             binding.tvType.text = dishType
