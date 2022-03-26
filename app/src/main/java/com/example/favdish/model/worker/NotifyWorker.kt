@@ -12,7 +12,6 @@ import android.graphics.Color
 import android.media.AudioAttributes
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -30,10 +29,10 @@ class NotifyWorker(context: Context, workerParameters: WorkerParameters): Worker
     }
     @RequiresApi(Build.VERSION_CODES.M)
     private fun sendNotification(){
-        val notification_id = 0
+        val notificationId = 0
         val intent = Intent(applicationContext, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        intent.putExtra(Constants.NOTIFICATION_ID, notification_id)
+        intent.putExtra(Constants.NOTIFICATION_ID, notificationId)
         val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val titleNotification = applicationContext.getString(R.string.notification_title)
         val subtitleNotification = applicationContext.getString(R.string.notification_subtitle)
@@ -53,8 +52,10 @@ class NotifyWorker(context: Context, workerParameters: WorkerParameters): Worker
             .setContentIntent(pendingIntent)
             .setStyle(bigPicStyle)
             .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
 
-        notification.priority = NotificationCompat.PRIORITY_MAX
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notification.setChannelId(Constants.NOTIFICATION_CHANNEL)
@@ -80,7 +81,7 @@ class NotifyWorker(context: Context, workerParameters: WorkerParameters): Worker
             channel.setSound(ringtoneManager, audioAttributes)
             notificationManager.createNotificationChannel(channel)
         }
-        notificationManager.notify(notification_id, notification.build())
+        notificationManager.notify(notificationId, notification.build())
     }
     private fun Context.vectorToBitmap(drawableId: Int): Bitmap? {
         // Get the Drawable Vector Image

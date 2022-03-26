@@ -3,9 +3,11 @@ package com.example.favdish.view.activities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,15 +19,23 @@ import com.example.favdish.R
 import com.example.favdish.databinding.ActivityMainBinding
 import com.example.favdish.model.worker.NotifyWorker
 import com.example.favdish.utils.Constants
+import com.example.favdish.viewmodel.SplashViewModel
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var mNavController: NavController
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val splashScreen = installSplashScreen()
+        splashScreen.apply {
+            setKeepOnScreenCondition {
+                viewModel.isLoading.value
+            }
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
